@@ -24,17 +24,17 @@ export class AppComponent {
   }
 
   OnUploadFile() {
-    console.log(this.selectedFile);
+    const formData: any = new FormData();
+    formData.append("avatar", this.selectedFile, this.selectedFile.name);
+    console.log(formData);
     //Upload file here send a binary data
-    this.http
-      .post("http://localhost:2611/profile", this.selectedFile)
-      .subscribe(
-        res => {
-          console.log(res);
-        },
-        err => {
-          console.log(err);
-        }
-      );
+    this.http.post("http://localhost:2611/profile", formData).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 }
